@@ -14,7 +14,7 @@ Do not provision paid infrastructure or run untrusted pull requests there.
 - [x] Add hosted validation and manual Windows build workflows with artifacts.
 - [x] Document runner requirements, build dispatch and installer retrieval.
 - [x] Run helper suites, syntax and workflow checks; scan changes for credentials.
-- [ ] Commit all sources with muleff attribution and push without force.
+- [x] Commit all sources with muleff attribution and push without force.
 - [ ] Verify remote files and hosted workflow results.
 
 Preserve Chromium 138.0.7204.306, the pinned JXL submodule and PGO resolution.

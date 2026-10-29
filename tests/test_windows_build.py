@@ -42,7 +42,7 @@ class WindowsBuildTest(unittest.TestCase):
             with self.subTest(value=value):
                 with self.assertRaises(self.build.BuildError):
                     self.build.output_path(self.root, value)
-        expected = self.root / "out" / "release with spaces"
+        expected = self.root.resolve() / "out" / "release with spaces"
         self.assertEqual(self.build.output_path(self.root, "out/release with spaces"), expected)
 
     def test_pgo_uses_exact_revision_profile_instead_of_newest(self):

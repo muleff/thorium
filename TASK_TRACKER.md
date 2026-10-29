@@ -8,8 +8,8 @@
 | Prepare pinned Windows build environment automatically | done | Disposable Chromium checkout, matching JXL DEPS and pinned depot_tools; six preparation regressions pass |
 | Add hosted helper validation and manual installer workflow | done | Linux/Windows helper matrix; native installer requires a Windows x64 runner labeled thorium-build; actionlint validation |
 | Check native test execution before artifact publication | done | Reject missing, skipped, failed or empty native test results; build thorium_all release prerequisites |
-| Publish complete modified overlay to main without force | in progress | Preserve existing target commit as parent; use supplied author identity; 28 helper tests and actionlint pass; credential scan clean |
-| Verify remote source and Actions results | pending | Run hosted tests after publication |
+| Publish complete modified overlay to main without force | done | Commit 23e182f; remote tree matches local; original target commit preserved; supplied author identity; credential scan clean |
+| Verify remote source and Actions results | in progress | First hosted Linux run passed; Windows found an 8.3 path comparison in the test fixture; canonical expected path corrected for next run |
 | Execute full Windows compilation | pending | BLOCKER: repository has zero registered self-hosted runners; standard hosted storage is insufficient |
 
 ## Scope and evidence
@@ -26,7 +26,7 @@ memory and responsiveness using WaGo as a reference, and compile a Windows EXE.
 | Avoid default tab-hover screenshot capture | done | Windows-only default; text and memory hover information and user choice retained |
 | Portable Windows build configuration and artifact validation | done | All Windows profiles use GN PGO resolver; driver validates source, CPU, tools, disk, installer variant and checksums; Windows execution blocked |
 | Hardware GPU / process-memory measurement tool | done | Actual CDP GPU status, during-workload memory, frame latency, startup; software detection; browser integration and GPU measurements blocked |
-| Run available tests, syntax checks and source diff review | done | 11 Python + 9 JavaScript tests pass; syntax and diff checks pass; independent review fixes applied; logs in validation/ |
+| Run available tests, syntax checks and source diff review | done | 19 Python + 9 JavaScript tests pass locally; syntax and actionlint checks pass; logs in validation/; hosted Windows rerun pending |
 | Compile modified Windows browser and installer | pending | BLOCKER: Linux host, ~25 GB free, no full Chromium checkout, GN or Windows SDK. Upstream requires >=100 GB. Do not substitute a launcher or stock EXE. |
 | Package modified source and instructions | done | Downloadable change kit includes exact patch, full modified files, license, instructions and validation evidence |
 
