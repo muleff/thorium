@@ -1,0 +1,33 @@
+{
+  "repository": "muleff/thorium",
+  "verified_source_commit": "0ae4946d91eac168f89a4b59f32a17d9e13fa46f",
+  "workflow": "Validate build tools",
+  "run_id": 40792389359,
+  "run_url": "https://github.com/muleff/thorium/actions/runs/40792389359",
+  "jobs": [
+    {
+      "id": 123180504109,
+      "name": "Tools (ubuntu-24.04)",
+      "conclusion": "success",
+      "python_tests": 19,
+      "javascript_tests": 9
+    },
+    {
+      "id": 123180504442,
+      "name": "Tools (windows-2022)",
+      "conclusion": "success",
+      "python_tests": 19,
+      "javascript_tests": 9
+    }
+  ],
+  "initial_run": {
+    "id": 40792212194,
+    "conclusion": "failure",
+    "cause": "Windows 8.3 temporary directory alias compared against resolved path in test expectation",
+    "resolution": "Canonicalize expected path; unchanged production path validation"
+  },
+  "native_windows_build_executed": false,
+  "installer_generated": false,
+  "registered_self_hosted_runners": 0,
+  "remaining_requirement": "Register a Windows x64 runner with thorium-build label, VS 2022, SDK 22621 and at least 300 GiB free before checkout"
+}

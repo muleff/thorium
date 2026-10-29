@@ -15,7 +15,8 @@ Do not provision paid infrastructure or run untrusted pull requests there.
 - [x] Document runner requirements, build dispatch and installer retrieval.
 - [x] Run helper suites, syntax and workflow checks; scan changes for credentials.
 - [x] Commit all sources with muleff attribution and push without force.
-- [ ] Verify remote files and hosted workflow results.
+- [x] Verify remote files and hosted workflow results. Run 40792389359 passes
+  both Linux and Windows helper jobs; native build still needs its runner.
 
 Preserve Chromium 138.0.7204.306, the pinned JXL submodule and PGO resolution.
 The build must run native MemorySaverMode tests before publishing an installer,
