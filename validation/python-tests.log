@@ -1,0 +1,33 @@
+test_build_space_never_allows_an_artifact_directory_inside_temp_root (test_prepare_windows_ci.PrepareWindowsCITest.test_build_space_never_allows_an_artifact_directory_inside_temp_root) ... ok
+test_checkout_fetches_only_requested_revision_from_local_git (test_prepare_windows_ci.PrepareWindowsCITest.test_checkout_fetches_only_requested_revision_from_local_git) ... Running: git init --quiet
+Running: git config core.longpaths true
+Running: git config core.autocrlf false
+Running: git remote add origin /tmp/tmpguc6qpjo/original
+Running: git fetch --depth=1 origin e0e02d85e9b73c68c17a8f03a9eda473370c4405
+From /tmp/tmpguc6qpjo/original
+ * branch            e0e02d85e9b73c68c17a8f03a9eda473370c4405 -> FETCH_HEAD
+Running: git checkout --detach FETCH_HEAD
+HEAD is now at e0e02d8 Pinned
+ok
+test_checkout_never_overwrites_an_existing_directory (test_prepare_windows_ci.PrepareWindowsCITest.test_checkout_never_overwrites_an_existing_directory) ... ok
+test_invalid_depot_revision_cannot_become_a_git_option (test_prepare_windows_ci.PrepareWindowsCITest.test_invalid_depot_revision_cannot_become_a_git_option) ... ok
+test_jxl_dependency_overlay_copies_all_three_files (test_prepare_windows_ci.PrepareWindowsCITest.test_jxl_dependency_overlay_copies_all_three_files) ... ok
+test_missing_dependency_overlay_fails_before_partial_copy (test_prepare_windows_ci.PrepareWindowsCITest.test_missing_dependency_overlay_fails_before_partial_copy) ... ok
+test_batch_command_avoids_a_second_windows_argv_quoting_layer (test_windows_build.WindowsBuildTest.test_batch_command_avoids_a_second_windows_argv_quoting_layer) ... ok
+test_check_reports_all_missing_infrastructure_without_mutations (test_windows_build.WindowsBuildTest.test_check_reports_all_missing_infrastructure_without_mutations) ... ok
+test_command_arguments_remain_separate (test_windows_build.WindowsBuildTest.test_command_arguments_remain_separate) ... ok
+test_cpu_profiles_keep_source_setup_and_gn_variant_paired (test_windows_build.WindowsBuildTest.test_cpu_profiles_keep_source_setup_and_gn_variant_paired) ... ok
+test_native_report_rejects_missing_or_invalid_json (test_windows_build.WindowsBuildTest.test_native_report_rejects_missing_or_invalid_json) ... ok
+test_native_report_requires_each_new_regression_to_execute_successfully (test_windows_build.WindowsBuildTest.test_native_report_requires_each_new_regression_to_execute_successfully) ... ok
+test_output_path_cannot_escape_source_or_replace_source_root (test_windows_build.WindowsBuildTest.test_output_path_cannot_escape_source_or_replace_source_root) ... ok
+test_package_preserves_bytes_and_records_sha256 (test_windows_build.WindowsBuildTest.test_package_preserves_bytes_and_records_sha256) ... ok
+test_package_rejects_non_pe_and_wrong_architecture (test_windows_build.WindowsBuildTest.test_package_rejects_non_pe_and_wrong_architecture) ... ok
+test_package_selects_cpu_variant_and_never_falls_back_to_generic (test_windows_build.WindowsBuildTest.test_package_selects_cpu_variant_and_never_falls_back_to_generic) ... ok
+test_pgo_rejects_path_traversal_and_empty_data (test_windows_build.WindowsBuildTest.test_pgo_rejects_path_traversal_and_empty_data) ... ok
+test_pgo_uses_exact_revision_profile_instead_of_newest (test_windows_build.WindowsBuildTest.test_pgo_uses_exact_revision_profile_instead_of_newest) ... ok
+test_read_version_requires_all_four_fields (test_windows_build.WindowsBuildTest.test_read_version_requires_all_four_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.061s
+
+OK

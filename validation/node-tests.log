@@ -1,0 +1,17 @@
+✔ CDP correlates concurrent responses arriving in reverse order (27.887758ms)
+✔ CDP surfaces protocol errors (6.087999ms)
+✔ CDP rejects unanswered commands within the deadline (33.128438ms)
+✔ CDP rejects pending requests when transport closes (4.162405ms)
+✔ CDP rejects malformed response envelopes without an uncaught exception (3.517694ms)
+✔ CDP rejects connections outside loopback (0.307955ms)
+✔ probe waits for tab creation and DOM readiness before measuring (206.117808ms)
+✔ GPU classification does not mistake software ANGLE for hardware (0.544702ms)
+✔ frame summary reports tail latency and rejects invalid samples (0.423959ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 363.099719

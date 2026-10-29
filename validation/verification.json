@@ -1,0 +1,75 @@
+{
+  "overall": "host checks passed; browser build and GPU verification blocked",
+  "host_checks": [
+    {
+      "name": "python-tests",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "node-tests",
+      "command": [
+        "node",
+        "--test",
+        "tests/gpu_probe.test.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "python-syntax",
+      "command": [
+        "python",
+        "-m",
+        "py_compile",
+        "tools/windows_build.py",
+        "tools/prepare_windows_ci.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "node-syntax",
+      "command": [
+        "node",
+        "--check",
+        "tools/gpu_probe.mjs"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "diff-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/workspace/scratch/ff51cc92970a/reference/actionlint",
+        "-color"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "python_tests": 19,
+  "javascript_tests": 9,
+  "native_cpp_tests_executed": false,
+  "windows_browser_compiled": false,
+  "physical_gpu_benchmark_executed": false,
+  "performance_improvement_measured": false,
+  "integration_limitation": "No local browser binary. Playwright download returned an invalid/truncated ZIP; no hardware device is exposed.",
+  "base_thorium_commit": "91b29e10e3c934ae187d9e7106fc88db64560eea",
+  "reference_wago_commit": "957b47d1dad40ba6189612ff48275ebd0fe2855e",
+  "actionlint_version": "1.7.12",
+  "windows_build_runner_registered": false
+}

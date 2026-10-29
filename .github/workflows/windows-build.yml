@@ -1,0 +1,94 @@
+name: Build Windows installer
+run-name: Windows x64 (${{ inputs.cpu }}) by @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      cpu:
+        description: CPU instruction set required on the target computer
+        required: true
+        default: avx
+        type: choice
+        options: [avx, avx2, sse4, sse3]
+      jobs:
+        description: Parallel compiler processes (1-128; choose for available RAM)
+        required: true
+        default: '4'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: thorium-windows-installer
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Compile and test Windows x64
+    runs-on: [self-hosted, Windows, X64, thorium-build]
+    timeout-minutes: 4320
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      BUILD_CPU: ${{ inputs.cpu }}
+      BUILD_JOBS: ${{ inputs.jobs }}
+      DEPOT_TOOLS_WIN_TOOLCHAIN: '0'
+    steps:
+      - name: Check out modified Thorium and pinned submodules
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Initialize Visual Studio 2022 x64 environment
+        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
+        with:
+          arch: x64
+          vsversion: '2022'
+      - name: Check SDK and build parameters
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:BUILD_JOBS -notmatch '^[0-9]{1,3}$' -or [int]$env:BUILD_JOBS -lt 1 -or [int]$env:BUILD_JOBS -gt 128) {
+            throw 'jobs must be an integer between 1 and 128'
+          }
+          $kit = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10'
+          if (-not (Test-Path (Join-Path $kit 'Include\10.0.22621.0\um\Windows.h'))) {
+            throw 'Install Windows SDK 10.0.22621.0 before running the build'
+          }
+          if (-not (Test-Path (Join-Path $kit 'Debuggers\x64\cdb.exe'))) {
+            throw 'Install Windows SDK Debugging Tools for x64 before running the build'
+          }
+      - name: Validate build tools before downloading Chromium
+        run: |
+          python -m unittest discover -s tests -p 'test_*.py' -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node --test tests/gpu_probe.test.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Fetch pinned sources, compile installer and run native tests
+        run: |
+          $base = if ($env:THORIUM_BUILD_BASE) { $env:THORIUM_BUILD_BASE } else { 'C:\tb' }
+          python tools/prepare_windows_ci.py --build-base "$base" --cpu "$env:BUILD_CPU" --jobs "$env:BUILD_JOBS" --artifacts artifacts/windows
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Upload verified installer, hashes and manifest
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: thorium-windows-x64-${{ inputs.cpu }}-${{ github.sha }}
+          path: artifacts/windows/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+      - name: Upload failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: thorium-windows-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/windows/*.json
+          if-no-files-found: warn
+          retention-days: 14

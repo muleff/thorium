@@ -1,0 +1,22 @@
+{
+  "version": "138.0.7204.306",
+  "host": "Linux",
+  "issues": [
+    "Native build requires Windows 10/11 x64 with Visual Studio 2022 and SDK 22621",
+    "At least 100 GiB free required; available: 23.8 GiB",
+    "Missing gn; use depot_tools and an x64 Native Tools terminal",
+    "Missing autoninja; use depot_tools and an x64 Native Tools terminal",
+    "Missing cl.exe; use depot_tools and an x64 Native Tools terminal",
+    "Invalid Chromium chrome/VERSION: [Errno 2] No such file or directory: '/workspace/scratch/ff51cc92970a/chromium/src/chrome/VERSION'",
+    "Incomplete Chromium checkout: missing DEPS",
+    "Incomplete Chromium checkout: missing build/vs_toolchain.py",
+    "Incomplete Chromium checkout: missing tools/update_pgo_profiles.py",
+    "Cannot resolve matching Windows PGO profile: [Errno 2] No such file or directory: '/workspace/scratch/ff51cc92970a/chromium/src/chrome/build/win64.pgo.txt'",
+    "Modified Thorium overlay not applied: components/performance_manager/user_tuning/prefs.cc; run with --prepare once",
+    "Modified Thorium overlay not applied: components/performance_manager/user_tuning/prefs_unittest.cc; run with --prepare once",
+    "Modified Thorium overlay not applied: chrome/browser/ui/browser_ui_prefs.cc; run with --prepare once",
+    "Applied source CPU marker does not match avx; prepare the matching CPU overlay"
+  ],
+  "browser_built": false,
+  "native_tests_run": false
+}
